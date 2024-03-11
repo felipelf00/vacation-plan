@@ -1,9 +1,9 @@
 import PlanContext from "./PlanContext";
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Form = () => {
-  const { plans, createPlan, updatePlan, deletePlan } = useContext(PlanContext);
+  const { plans, createPlan, updatePlan } = useContext(PlanContext);
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -12,31 +12,56 @@ const Form = () => {
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      const plan = plans.find((element) => element.id === +id);
+
+      if (plan) {
+        setTitle(plan.title);
+        setStartDate(plan.startDate);
+        setEndDate(plan.endDate);
+        setLocation(plan.location);
+        setParticipants(plan.participants);
+        setDescription(plan.description);
+      }
+    }
+  }, [id, plans]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    createPlan({
-      id: plans.length,
-      title,
-      description,
-      startDate,
-      endDate,
-      location,
-      participants,
-    });
-    // Reset the form fields after submission
-    // setTitle("");
-    // setDescription("");
-    // setStartDate("");
-    // setEndDate("");
-    // setLocation("");
-    // setParticipants("");
+    if (id) {
+      console.log("updating");
+      updatePlan(id, {
+        id: parseInt(id),
+        title,
+        startDate,
+        endDate,
+        location,
+        participants,
+        description,
+      });
+    } else {
+      createPlan({
+        id: plans.length,
+        title,
+        description,
+        startDate,
+        endDate,
+        location,
+        participants,
+      });
+    }
     navigate("/plans");
   };
 
   return (
     <main className="p-4">
-      <h3 className="text-center text-2xl font-semibold my-4">New plan</h3>
+      <h3 className="text-center text-2xl font-semibold my-4">
+        {id ? "Edit plan" : "New Plan"}
+      </h3>
       <form className="mx-auto max-w-md p-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
           <label className="block text-sm font-bold mb-2" htmlFor="title">

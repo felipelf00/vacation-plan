@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import Home from "./Home";
 import Plans from "./Plans";
 import Form from "./Form";
+import Delete from "./Delete";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -21,6 +22,14 @@ const Router = () => {
         {
           path: "new",
           element: <Form />,
+        },
+        {
+          path: "edit/:id",
+          element: <Form />,
+        },
+        {
+          path: "delete/:id",
+          element: <Delete />,
         },
       ],
     },

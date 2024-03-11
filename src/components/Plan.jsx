@@ -1,8 +1,13 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Plan = ({ plan }) => {
   return (
     <div className="mx-auto max-w-xl">
+      <div>
+        <Link to={`/edit/${plan.id}`}>Edit</Link>
+        <Link to={`/delete/${plan.id}`}>Delete</Link>
+      </div>
       <p>
         <strong>Title:</strong> {plan.title}
       </p>

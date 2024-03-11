@@ -22,7 +22,14 @@ export const PlanProvider = ({ children }) => {
   // const getPlans = () => plans;
 
   const updatePlan = (id, updatedPlan) => {
-    setPlans(plans.map((plan) => (plan.id === id ? updatedPlan : plan)));
+    setPlans((prevPlans) =>
+      prevPlans.map((plan) =>
+        plan.id === +id ? { ...plan, ...updatedPlan } : plan
+      )
+    );
+    console.log("id: " + id + "");
+    console.log("updatedPlan: " + JSON.stringify(updatedPlan));
+    console.log("plans: " + JSON.stringify(plans));
   };
 
   const deletePlan = (id) => {
