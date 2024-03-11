@@ -43,7 +43,7 @@ const Plan = ({ plan }) => {
             delete
           </Link>
           <Link
-            to={`/delete/${plan.id}`}
+            to={`/print/${plan.id}`}
             className="material-symbols-outlined hover:text-sky-700 transition"
           >
             print
@@ -78,11 +78,11 @@ Plan.propTypes = {
   plan: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    startDate: PropTypes.string.isRequired,
-    endDate: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    participants: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
+    location: PropTypes.string,
+    participants: PropTypes.string,
   }).isRequired,
 };
 
