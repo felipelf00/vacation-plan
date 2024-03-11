@@ -27,9 +27,6 @@ export const PlanProvider = ({ children }) => {
         plan.id === +id ? { ...plan, ...updatedPlan } : plan
       )
     );
-    console.log("id: " + id + "");
-    console.log("updatedPlan: " + JSON.stringify(updatedPlan));
-    console.log("plans: " + JSON.stringify(plans));
   };
 
   const deletePlan = (id) => {
