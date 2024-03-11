@@ -2,12 +2,9 @@ import PropTypes from "prop-types";
 
 const Plan = ({ plan }) => {
   return (
-    <>
+    <div className="mx-auto max-w-xl">
       <p>
         <strong>Title:</strong> {plan.title}
-      </p>
-      <p>
-        <strong>Description:</strong> {plan.description}
       </p>
       <p>
         <strong>From:</strong> {plan.startDate}
@@ -21,7 +18,11 @@ const Plan = ({ plan }) => {
       <p>
         <strong>Participants:</strong> {plan.participants}
       </p>
-    </>
+      <p>
+        <strong>Description:</strong>
+      </p>
+      <p>{plan.description}</p>
+    </div>
   );
 };
 

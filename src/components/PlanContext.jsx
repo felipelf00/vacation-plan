@@ -5,15 +5,13 @@ const PlanContext = createContext();
 export const PlanProvider = ({ children }) => {
   const [plans, setPlans] = useState([
     {
-      id: 1,
+      id: 0,
       title: "Summer Vacation",
-      description: "A trip to the beach",
       startDate: "2024-06-01",
-      // startTime: "13:00",
       endDate: "2024-06-10",
-      // endTime: "18:00",
       location: "Miami Beach",
       participants: "Bill, Steve",
+      description: "A trip to the beach",
     },
   ]);
 
