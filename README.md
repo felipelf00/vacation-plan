@@ -62,43 +62,57 @@ In order to accomodate flexible travel plans and vacations which plans are not y
 ## Components (in alphabetical order)
 
 **App.jsx**
+
 Returns the Router wrapped with PlanProvider
 
 **Delete.jsx**
+
 Asks the user for confirmation before deleting a plan. If deletion is confirmed, deletePlan (provided by PlanContext) is called. User is then redirected to /plans.
 
 **Footer.jsx**
+
 Simple footer displayed at the bottom of the page with a link to my portfolio.
 
 **Form.jsx**
+
 Form where the user inputs data when creating a new plan or modifying an existing one. The component checks for the presence of the "id" url parameter to decide if this is a new plan or an existing one. Client-side validation is performed using validateForm(), which checks the inputs and populates an array of errors if they fail validation. If there are errors, the component will not submit the data and instead displays the errors.
 
 **Header.jsx**
+
 Simple header with a logo and the Navigation.jsx component.
 
 **Home.jsx**
+
 Home page displaying a welcome message, a travel-themed image and brief overview of the website's functionality.
 
 **Layout.jsx**
+
 Defines the layout of the page: the Header, the Footer and an Outlet element between them that displays the main content of the pages.
 
 **Navigation.jsx**
+
 Navigation links for the home page and the plans page.
 
 **NotFound.jsx**
+
 Error page for handling bad urls.
 
 **PdfGenerator.jsx**
+
 Uses react-pdf to generate a pdf file for the specified plan.
 
 **Plan.jsx**
+
 Expandable card component for each plan. Initially displayed with just the title row and buttons for editing, deleting, printing and expanding. When expanded, displays the rest of the plan's information.
 
 **PlanContext.jsx**
+
 Context provider for plans. Along with the array of plans it provides functions for creating, updating and deleting them.
 
 **Plans.jsx**
+
 Page that displays all current plans.
 
 **Router.jsx**
+
 Defines the routes using Layout as a parent element and Home as index.
