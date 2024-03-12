@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import PropTypes from "prop-types";
 
 const PlanContext = createContext();
 
@@ -6,11 +7,11 @@ export const PlanProvider = ({ children }) => {
   const [plans, setPlans] = useState([
     {
       id: 0,
-      title: "Summer Vacation",
-      startDate: "2024-06-01",
-      endDate: "2024-06-10",
-      location: "Miami Beach",
-      participants: "Bill, Steve",
+      title: "Beach Vacation",
+      startDate: "2024-04-01",
+      endDate: "2024-04-06",
+      location: "Ipanema Beach",
+      participants: "Me, Gustavo, Marina, Thiago",
       description: "A trip to the beach",
     },
   ]);
@@ -38,6 +39,10 @@ export const PlanProvider = ({ children }) => {
       {children}
     </PlanContext.Provider>
   );
+};
+
+PlanProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default PlanContext;
