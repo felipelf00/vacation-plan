@@ -12,56 +12,39 @@ const Form = () => {
   const [participants, setParticipants] = useState("");
   const [description, setDescription] = useState("");
 
-  const [titleError, setTitleError] = useState("");
-  const [dateError, setDateError] = useState("");
-  const [locationError, setLocationError] = useState("");
-  const [participantsError, setParticipantsError] = useState("");
-  const [descriptionError, setDescriptionError] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const validateForm = () => {
-    let isValid = true;
+    const newErrors = [];
 
     // Validate title
     if (!title) {
-      setTitleError("Title is required");
-      isValid = false;
-    } else {
-      setTitleError("");
-    }
-
-    // Description is not required, but if present must be at least 3 characters long
-    if (description && description.length < 3) {
-      setDescriptionError("Description must be at least 3 characters long");
-      isValid = false;
-    } else {
-      setDescriptionError("");
+      newErrors.push("Title is required");
     }
 
     // Dates are not required, but if present, endDate should be after start date
     if (startDate && endDate && startDate > endDate) {
-      setDateError("Vacation must start before it ends");
-      isValid = false;
-    } else {
-      setDateError("");
+      newErrors.push("Vacation must start before it ends");
     }
 
     // Location is not required, but if present must be at least 3 characters long
     if (location && location.length < 3) {
-      setLocationError("Location must be at least 3 characters long");
-      isValid = false;
-    } else {
-      setLocationError("");
+      newErrors.push("Location must be at least 3 characters long");
     }
 
     // Participants is not required, but if present must be at least 3 characters long
     if (participants && participants.length < 3) {
-      setParticipantsError("Participants must be at least 3 characters long");
-      isValid = false;
-    } else {
-      setParticipantsError("");
+      newErrors.push("Participants must be at least 3 characters long");
     }
 
-    return isValid;
+    // Description is not required, but if present must be at least 3 characters long
+    if (description && description.length < 3) {
+      newErrors.push("Description must be at least 3 characters long");
+    }
+
+    setErrors(newErrors);
+
+    return newErrors.length === 0;
   };
 
   const { id } = useParams();
@@ -84,8 +67,9 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setErrors([]);
 
-    if (id) {
+    if (id && validateForm()) {
       updatePlan(id, {
         id: parseInt(id),
         title,
@@ -95,7 +79,8 @@ const Form = () => {
         participants,
         description,
       });
-    } else {
+      navigate("/plans");
+    } else if (validateForm()) {
       createPlan({
         id: plans.length,
         title,
@@ -105,19 +90,27 @@ const Form = () => {
         location,
         participants,
       });
+      navigate("/plans");
     }
-    navigate("/plans");
   };
 
   return (
     <main className="p-4">
-      <h3 className="text-center text-2xl font-semibold my-4">
+      <h3 className="text-center text-2xl font-extrabold my-4">
         {id ? "Edit plan" : "New Plan"}
       </h3>
-      <form className="mx-auto max-w-md p-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      {errors.length > 0 && (
+        <ul className="text-red-800 text-center">
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
+
+      <form className="relative mx-auto max-w-md p-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
           <label className="block text-sm font-bold mb-2" htmlFor="title">
-            Title:
+            Title <span className="text-red-800">(required)</span>:
           </label>
           <input
             className="shadow border rounded w-full py-2 px-3"
