@@ -2,7 +2,11 @@
 export default {
   content: ["./src/**/*.html", "./src/**/*.js", "./src/**/*.jsx"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        karla: ["Karla", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };

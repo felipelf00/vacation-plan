@@ -1,9 +1,15 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { DateTime } from "luxon";
 
 const Plan = ({ plan }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const formatDate = (dateString) => {
+    const date = DateTime.fromISO(dateString);
+    return date.toFormat("dd/MMM/yyyy");
+  };
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -12,7 +18,7 @@ const Plan = ({ plan }) => {
   return (
     <div className="mx-auto max-w-xl my-4">
       <div className="flex justify-between items-center my-4">
-        <span className="w-[75px] text-left">
+        <span className="md:w-[75px] text-left">
           <span
             onClick={handleClick}
             className={
@@ -53,10 +59,10 @@ const Plan = ({ plan }) => {
       {isOpen && (
         <div className="md:mx-12">
           <p>
-            <strong>From:</strong> {plan.startDate}
+            <strong>From:</strong> {formatDate(plan.startDate)}
           </p>
           <p>
-            <strong>Until:</strong> {plan.endDate}
+            <strong>Until:</strong> {formatDate(plan.endDate)}
           </p>
           <p>
             <strong>Location:</strong> {plan.location}

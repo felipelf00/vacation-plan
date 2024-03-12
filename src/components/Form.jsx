@@ -4,15 +4,68 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const Form = () => {
   const { plans, createPlan, updatePlan } = useContext(PlanContext);
+
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [location, setLocation] = useState("");
   const [participants, setParticipants] = useState("");
   const [description, setDescription] = useState("");
-  const navigate = useNavigate();
+
+  const [titleError, setTitleError] = useState("");
+  const [dateError, setDateError] = useState("");
+  const [locationError, setLocationError] = useState("");
+  const [participantsError, setParticipantsError] = useState("");
+  const [descriptionError, setDescriptionError] = useState("");
+
+  const validateForm = () => {
+    let isValid = true;
+
+    // Validate title
+    if (!title) {
+      setTitleError("Title is required");
+      isValid = false;
+    } else {
+      setTitleError("");
+    }
+
+    // Description is not required, but if present must be at least 3 characters long
+    if (description && description.length < 3) {
+      setDescriptionError("Description must be at least 3 characters long");
+      isValid = false;
+    } else {
+      setDescriptionError("");
+    }
+
+    // Dates are not required, but if present, endDate should be after start date
+    if (startDate && endDate && startDate > endDate) {
+      setDateError("Vacation must start before it ends");
+      isValid = false;
+    } else {
+      setDateError("");
+    }
+
+    // Location is not required, but if present must be at least 3 characters long
+    if (location && location.length < 3) {
+      setLocationError("Location must be at least 3 characters long");
+      isValid = false;
+    } else {
+      setLocationError("");
+    }
+
+    // Participants is not required, but if present must be at least 3 characters long
+    if (participants && participants.length < 3) {
+      setParticipantsError("Participants must be at least 3 characters long");
+      isValid = false;
+    } else {
+      setParticipantsError("");
+    }
+
+    return isValid;
+  };
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -33,7 +86,6 @@ const Form = () => {
     event.preventDefault();
 
     if (id) {
-      console.log("updating");
       updatePlan(id, {
         id: parseInt(id),
         title,
@@ -74,6 +126,7 @@ const Form = () => {
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            required
           />
         </div>
         <div className="mb-4">
