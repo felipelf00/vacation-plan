@@ -5,6 +5,7 @@ import Plans from "./Plans";
 import Form from "./Form";
 import Delete from "./Delete";
 import PdfGenerator from "./PdfGenerator";
+import NotFound from "./NotFound";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const Router = () => {
         {
           path: "print/:id",
           element: <PdfGenerator />,
+        },
+        {
+          path: "*",
+          element: <NotFound />,
         },
       ],
     },

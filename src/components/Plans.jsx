@@ -4,19 +4,13 @@ import Plan from "./Plan";
 import { Link } from "react-router-dom";
 
 const Plans = () => {
-  const { plans, createPlan, updatePlan, deletePlan } = useContext(PlanContext);
+  const { plans } = useContext(PlanContext);
   return (
     <main className="p-4">
       <div className="relative">
         <h3 className="text-center text-2xl font-extrabold my-4">
           Current plans:
         </h3>
-        {/* <Link
-          to="/new"
-          className="absolute right-4 top-0 bg-sky-500 text-white font-semibold py-1 px-3 rounded shadow"
-        >
-          New plan
-        </Link> */}
       </div>
       <Link
         to="/new"

@@ -57,7 +57,7 @@ const Plan = ({ plan }) => {
         </div>
       </div>
       {isOpen && (
-        <div className="md:mx-12">
+        <div className="md:mx-16 text-lg">
           <p>
             <strong>From:</strong> {formatDate(plan.startDate)}
           </p>
