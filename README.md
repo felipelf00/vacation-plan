@@ -2,7 +2,7 @@
 
 A simple project for managing holiday plans developed as part of Buzzvel's recruiting process.
 
-<span style="color:red; font-weight:bold">🚀 New Feature: implemented an API for managing the CRUD operations! 🚀</span>
+<span style="color:red; font-weight:bold">🚀 New Feature: implemented an API for managing the CRUD operations! 🚀<br>The API is in another repository: https://github.com/felipelf00/vacation-api</span>
 
 It was developed using mainly React and TailwindCSS.
 
