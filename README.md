@@ -2,6 +2,8 @@
 
 A simple project for managing holiday plans developed as part of Buzzvel's recruiting process.
 
+<span style="color:red; font-weight:bold">🚀 New Feature available on api-integration branch: implemented an API for managing the CRUD operations! 🚀</span>
+
 It was developed using mainly React and TailwindCSS.
 
 ## Prerequisites:
