@@ -7,10 +7,10 @@ const Delete = () => {
   const { plans, deletePlan } = useContext(PlanContext);
   const navigate = useNavigate();
 
-  const plan = plans.find((element) => element.id === +id);
+  const plan = plans.find((element) => element._id === id);
 
   const handleConfirm = () => {
-    deletePlan(+id);
+    deletePlan(id);
     navigate("/plans");
   };
 

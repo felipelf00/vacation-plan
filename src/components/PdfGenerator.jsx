@@ -18,23 +18,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   title: {
-    // fontWeight: "bold",
     marginBottom: 10,
   },
   centerText: {
     textAlign: "center",
   },
-  // value: {
-  //   marginLeft: 10,
-  //   fontWeight: "normal",
-  // },
 });
 
 const PdfGenerator = () => {
   const { plans } = useContext(PlanContext);
 
   const { id } = useParams();
-  const plan = plans.find((element) => element.id === +id);
+  const plan = plans.find((element) => element._id === id);
 
   return (
     <PDFViewer style={{ width: "100%", height: "100vh" }}>

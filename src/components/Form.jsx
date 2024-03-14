@@ -52,7 +52,9 @@ const Form = () => {
 
   useEffect(() => {
     if (id) {
-      const plan = plans.find((element) => element.id === +id);
+      const plan = plans.find((element) => element._id === id);
+      console.log("Fetched Plan:", plan);
+      console.log("id: " + id);
 
       if (plan) {
         setTitle(plan.title);
@@ -71,7 +73,6 @@ const Form = () => {
 
     if (id && validateForm()) {
       updatePlan(id, {
-        id: parseInt(id),
         title,
         startDate,
         endDate,
@@ -82,7 +83,6 @@ const Form = () => {
       navigate("/plans");
     } else if (validateForm()) {
       createPlan({
-        id: plans.length,
         title,
         description,
         startDate,

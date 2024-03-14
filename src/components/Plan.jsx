@@ -37,19 +37,19 @@ const Plan = ({ plan }) => {
         </span>
         <div className="w-[75px] flex items-center">
           <Link
-            to={`/edit/${plan.id}`}
+            to={`/edit/${plan._id}`}
             className="material-symbols-outlined hover:text-sky-700 transition"
           >
             edit
           </Link>
           <Link
-            to={`/delete/${plan.id}`}
+            to={`/delete/${plan._id}`}
             className="material-symbols-outlined hover:text-sky-700 transition"
           >
             delete
           </Link>
           <Link
-            to={`/print/${plan.id}`}
+            to={`/print/${plan._id}`}
             className="material-symbols-outlined hover:text-sky-700 transition"
           >
             print
@@ -82,7 +82,7 @@ const Plan = ({ plan }) => {
 
 Plan.propTypes = {
   plan: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
     startDate: PropTypes.string,

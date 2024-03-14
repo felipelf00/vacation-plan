@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const Plans = () => {
   const { plans } = useContext(PlanContext);
+
   return (
     <main className="p-4">
       <div className="relative">
@@ -20,7 +21,7 @@ const Plans = () => {
       </Link>
       {plans &&
         plans.map((plan) => {
-          return <Plan plan={plan} key={plan.id} />;
+          return <Plan plan={plan} key={plan._id} />;
         })}
     </main>
   );
